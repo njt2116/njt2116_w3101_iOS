@@ -10,6 +10,7 @@
 #import "NoteDataStore.h"
 #import "Note.h"
 #import "TableViewCell.h"
+#import "EditViewController.h"
 
 @interface NoteTableViewController ()
 
@@ -21,6 +22,10 @@
     [super viewDidLoad];
     
     self.dataStore = [NoteDataStore sharedNoteDataStore];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -62,4 +67,16 @@
     return 1;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    EditViewController *cellSelectionSegueDestination = segue.destinationViewController;
+    NSIndexPath *cellSelectionPathIndex = [self.tableView indexPathForSelectedRow];
+    if([segue.identifier isEqualToString:@"addNote"])
+    {
+        cellSelectionSegueDestination.currentNote = nil;
+    }
+    else
+    {
+        cellSelectionSegueDestination.currentNote = self.dataStore.notesArray[cellSelectionPathIndex.row];
+    }
+}
 @end

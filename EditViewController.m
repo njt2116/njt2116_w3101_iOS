@@ -22,21 +22,15 @@
 
 @implementation EditViewController
 
-- (void)generateButtons {
-    // Do any additional setup after loading the view.
-    UIBarButtonItem  *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNoteToDataStoreWithInfoFromViewController:)];
-    
-    UIBarButtonItem *emailButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(emailNote:)];
-    
-    UIBarButtonItem *addPicButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem: UIBarButtonSystemItemCamera target:self action:@selector(addPic:)];
-    
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveButton,emailButton, addPicButton, nil] animated:YES];
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self generateButtons];
     self.dataStore = [NoteDataStore sharedNoteDataStore];
+    self.noteTitleTextField.text = [self.currentNote noteTitle];
+    self.noteBodyTextView.text = [self.currentNote noteBody];
+    self.noteImageView.image = [self.currentNote noteImage];
 }
 
 
@@ -59,13 +53,40 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)generateButtons {
+    // Do any additional setup after loading the view.
+    UIBarButtonItem  *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNoteToDataStoreWithInfoFromViewController:)];
+    
+    UIBarButtonItem *emailButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(emailNote:)];
+    
+    UIBarButtonItem *addPicButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem: UIBarButtonSystemItemCamera target:self action:@selector(addPic:)];
+    
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveButton,emailButton, addPicButton, nil] animated:YES];
+}
+
 
 -(IBAction)emailNote:(id)sender{
     NSLog(@"emailNote was clicked");
 }
 
 -(IBAction)addPic:(id)sender{
-    NSLog(@"addPic was clicked");
+    UIImagePickerController *noteImagePick = [[UIImagePickerController alloc]init];
+    noteImagePick.delegate = self;
+    noteImagePick.allowsEditing = YES;
+    noteImagePick.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:(noteImagePick) animated:YES completion:NULL];
+    
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
+    [self.currentNote setNoteImage:chosenImage];
+    self.noteImageView.image = chosenImage;
+    [picker dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Note.h"
 #import "NoteDataStore.h"
+#import <MessageUI/MessageUI.h> 
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface EditViewController : UIViewController
+@interface EditViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Note *currentNote;
 @property (strong, nonatomic) NoteDataStore *dataStore;

@@ -37,9 +37,13 @@
                                         <constraint firstAttribute="centerY" secondItem="TJP-dE-Ovq" secondAttribute="centerY" id="ysw-Ry-MQw"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" button="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="noteCellImage" destination="BVk-cL-YCa" id="6uq-DV-9yV"/>
                                     <outlet property="noteCellLabel" destination="TJP-dE-Ovq" id="VVr-jS-X4r"/>
+                                    <segue destination="XX6-c4-yeQ" kind="show" identifier="selectedCell" id="gDc-uJ-dTo"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -51,7 +55,7 @@
                     <navigationItem key="navigationItem" title="LucyList" id="vxh-u5-Xkl">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="uWw-qD-ji6">
                             <connections>
-                                <segue destination="XX6-c4-yeQ" kind="show" id="EuZ-TN-qnr"/>
+                                <segue destination="XX6-c4-yeQ" kind="show" identifier="addNote" id="EuZ-TN-qnr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -138,4 +142,7 @@
             <point key="canvasLocation" x="-2484" y="126"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="EuZ-TN-qnr"/>
+    </inferredMetricsTieBreakers>
 </document>
