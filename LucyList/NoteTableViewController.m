@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataStore = [NoteDataStore sharedNoteDataStore];
-    [self.dataStore unarchiveNoteArray];
+    //[self.dataStore unarchiveNoteArray];
 
     
 }
@@ -70,10 +70,19 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    
     EditViewController *cellSelectionSegueDestination = segue.destinationViewController;
     NSIndexPath *cellSelectionPathIndex = [self.tableView indexPathForSelectedRow];
+    
+    NSDate *currentTime = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"mm-dd-yyyy hh:mm a"];
+    NSString *resultString = [dateFormatter stringFromDate: currentTime];
+    NSLog(@"@%", resultString);
     if([segue.identifier isEqualToString:@"addNote"])
     {
+        cellSelectionSegueDestination.timeStampString = resultString;
         cellSelectionSegueDestination.currentNote = nil;
     }
     else

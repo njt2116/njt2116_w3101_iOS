@@ -16,6 +16,6 @@
 
 @property (strong, nonatomic) Note *currentNote;
 @property (strong, nonatomic) NoteDataStore *dataStore;
-@property (strong, nonatomic) NSString *noteCreateTimeStamp;
+@property (strong, nonatomic) NSString *timeStampString;
 
 @end

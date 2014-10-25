@@ -34,37 +34,36 @@
     self.noteTitleTextField.text = [self.currentNote noteTitle];
     self.noteBodyTextView.text = [self.currentNote noteBody];
     self.noteImageView.image = [self.currentNote noteImage];
-    self.createNoteTimeStamp.text = [self.currentNote noteCreateDate];
+    NSString *textStamp = [self.currentNote noteCreateDate];
+    if(textStamp!= NULL){
+        self.createNoteTimeStamp.text = [NSString stringWithFormat:@"%@%@", self.createNoteTimeStamp.text, textStamp];
+            NSLog(@"%@", self.createNoteTimeStamp.text);
+            NSLog(@"%@", textStamp);
+    }
 }
 
 
 
 -(IBAction)saveNoteToDataStoreWithInfoFromViewController:(id)sender{
-    NSLog(@"saveNoteToDataStoreWithInfoFromViewController was clicked");
+    
     NSString *currTitle = self.noteTitleTextField.text;
     NSString *currText = self.noteBodyTextView.text;
     UIImage *currImage = self.noteImageView.image;
-    NSString *currNoteCreateTime = self.createNoteTimeStamp.text;
     if(self.currentNote){
         self.currentNote.noteTitle = currTitle;
         self.currentNote.noteBody = currText;
         self.currentNote.noteImage = currImage;
-        self.currentNote.noteCreateDate= currNoteCreateTime;
     }
     else
     {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
-        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:162000];
-        NSString *formattedDateString = [dateFormatter stringFromDate:date];
-        [self.dataStore createNoteWithTitle:currTitle withNoteBody:currText withNoteImage:currImage withNoteCreateDate:formattedDateString];
+        [self.dataStore createNoteWithTitle:currTitle withNoteBody:currText withNoteImage:currImage withNoteCreateDate:_timeStampString];
     }
     [self.dataStore saveNoteArray];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)generateButtons {
-    // Do any additional setup after loading the view.
+    
     UIBarButtonItem  *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveNoteToDataStoreWithInfoFromViewController:)];
     
     UIBarButtonItem *emailButton = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(emailNote:)];
@@ -74,7 +73,7 @@
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:saveButton,emailButton, addPicButton, nil] animated:YES];
 }
 
-
+/* Email the note and associated info */
 -(IBAction)emailNote:(id)sender{
     if([MFMailComposeViewController canSendMail]){
         MFMailComposeViewController *mail = [[MFMailComposeViewController alloc]init];
@@ -115,6 +114,8 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+
+/* Add an image to the note */
 -(IBAction)addPic:(id)sender{
     UIImagePickerController *noteImagePick = [[UIImagePickerController alloc]init];
     noteImagePick.delegate = self;
