@@ -21,10 +21,13 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BVk-cL-YCa">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="171"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NoteTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJP-dE-Ovq">
-                                            <rect key="frame" x="266" y="75" width="69" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NoteTitle" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJP-dE-Ovq">
+                                            <rect key="frame" x="239" y="69" width="122" height="34"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES" staticText="YES" summaryElement="YES"/>
+                                            </accessibility>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="28"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -83,11 +86,6 @@
                                     <constraint firstAttribute="height" constant="157" id="dy3-jg-MCW"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Lucy" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dme-pT-6GN">
-                                <rect key="frame" x="0.0" y="123" width="600" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lY-bZ-biB">
                                 <rect key="frame" x="0.0" y="224" width="600" height="131"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -95,14 +93,32 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note Created: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JP-Iy-yiR">
+                                <rect key="frame" x="0.0" y="541" width="82" height="15"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" cocoaTouchSystemColor="lightTextColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dme-pT-6GN">
+                                <rect key="frame" x="0.0" y="123" width="600" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.53000000000000003" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="27"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Dme-pT-6GN" secondAttribute="trailing" id="2v1-Cy-gsl"/>
                             <constraint firstItem="hig-P7-sOn" firstAttribute="top" secondItem="GbC-pC-B9n" secondAttribute="bottom" constant="-5" id="BZZ-fJ-0d4"/>
+                            <constraint firstItem="8JP-Iy-yiR" firstAttribute="leading" secondItem="CHJ-mm-Y4T" secondAttribute="leading" id="FT8-kx-lkC"/>
                             <constraint firstItem="hig-P7-sOn" firstAttribute="leading" secondItem="CHJ-mm-Y4T" secondAttribute="leading" id="GxT-Kn-qxc"/>
                             <constraint firstItem="hig-P7-sOn" firstAttribute="centerY" secondItem="Dme-pT-6GN" secondAttribute="centerY" constant="-0.5" id="KFb-ed-YrL"/>
                             <constraint firstItem="hig-P7-sOn" firstAttribute="trailing" secondItem="2lY-bZ-biB" secondAttribute="trailing" id="OaL-eI-ank"/>
+                            <constraint firstItem="VCG-Lj-u6r" firstAttribute="top" secondItem="8JP-Iy-yiR" secondAttribute="bottom" id="Qtn-oa-5rB"/>
                             <constraint firstItem="hig-P7-sOn" firstAttribute="leading" secondItem="2lY-bZ-biB" secondAttribute="leading" id="XHS-DT-R6a"/>
                             <constraint firstItem="Dme-pT-6GN" firstAttribute="leading" secondItem="CHJ-mm-Y4T" secondAttribute="leading" id="ccS-l7-B4P"/>
                             <constraint firstAttribute="trailing" secondItem="Dme-pT-6GN" secondAttribute="trailing" id="fVo-ak-0LS"/>

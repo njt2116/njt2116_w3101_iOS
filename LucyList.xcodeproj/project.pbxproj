@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0598D0CE19FA2660000EF7B6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0598D0CD19FA2660000EF7B6 /* UIKit.framework */; };
 		05B34C7F19F8B1C10013B556 /* NoteDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B34C7E19F8B1C10013B556 /* NoteDataStore.m */; };
 		05B34C8219F8C8B90013B556 /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B34C8119F8C8B90013B556 /* EditViewController.m */; };
 		05B34C8519F8EFB80013B556 /* NoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 05B34C8419F8EFB80013B556 /* NoteTableViewController.m */; };
@@ -31,10 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0598D0CD19FA2660000EF7B6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		05B34C7D19F8B1C10013B556 /* NoteDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoteDataStore.h; path = ../NoteDataStore.h; sourceTree = "<group>"; };
 		05B34C7E19F8B1C10013B556 /* NoteDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteDataStore.m; path = ../NoteDataStore.m; sourceTree = "<group>"; };
 		05B34C8019F8C8B90013B556 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = ../EditViewController.h; sourceTree = "<group>"; };
-		05B34C8119F8C8B90013B556 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; usesTabs = 0; };
+		05B34C8119F8C8B90013B556 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = EditViewController.m; path = ../EditViewController.m; sourceTree = "<group>"; usesTabs = 0; };
 		05B34C8319F8EFB80013B556 /* NoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteTableViewController.h; sourceTree = "<group>"; };
 		05B34C8419F8EFB80013B556 /* NoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteTableViewController.m; sourceTree = "<group>"; };
 		05B34C8619F8F0240013B556 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0598D0CE19FA2660000EF7B6 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +78,7 @@
 		05CBBEA219F8666E004BA22F = {
 			isa = PBXGroup;
 			children = (
+				0598D0CD19FA2660000EF7B6 /* UIKit.framework */,
 				05CBBEAD19F8666E004BA22F /* LucyList */,
 				05CBBEC719F8666E004BA22F /* LucyListTests */,
 				05CBBEAC19F8666E004BA22F /* Products */,

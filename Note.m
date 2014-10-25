@@ -22,17 +22,14 @@
         _noteTitle = noteTitle;
         _noteBody = noteBody;
         _noteImage = noteImage;
-    }
-    if(!self)
-    {
-        NSLog(@"This is null.  wth");
+        
     }
     return self;
 }
 
 -(void)encodeWithCoder:(NSCoder *)aCoder{
     [aCoder encodeObject:self.noteTitle forKey:NSStringFromSelector(@selector(noteTitle))];
-    [aCoder encodeObject:self.noteBody forKey:NSStringFromSelector(@selector(noteTitle))];
+    [aCoder encodeObject:self.noteBody forKey:NSStringFromSelector(@selector(noteBody))];
     [aCoder encodeObject:self.noteImage forKey:NSStringFromSelector(@selector(noteImage))];
 }
 

@@ -9,6 +9,7 @@
 #import "EditViewController.h"
 #import <UIKit/UIKit.h>
 #import "NoteDataStore.h"
+#import <MessageUI/MessageUI.h>
 
 
 
@@ -38,7 +39,6 @@
 -(IBAction)saveNoteToDataStoreWithInfoFromViewController:(id)sender{
     NSLog(@"saveNoteToDataStoreWithInfoFromViewController was clicked");
     NSString *currTitle = self.noteTitleTextField.text;
-    NSLog(@"%@", currTitle);
     NSString *currText = self.noteBodyTextView.text;
     UIImage *currImage = self.noteImageView.image;
     if(self.currentNote){
@@ -50,6 +50,7 @@
     {
         [self.dataStore createNoteWithTitle:currTitle withNoteBody:currText withNoteImage:currImage];
     }
+    [self.dataStore saveNoteArray];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -66,7 +67,43 @@
 
 
 -(IBAction)emailNote:(id)sender{
-    NSLog(@"emailNote was clicked");
+    if([MFMailComposeViewController canSendMail]){
+        MFMailComposeViewController *mail = [[MFMailComposeViewController alloc]init];
+        mail.mailComposeDelegate = self;
+        
+        /*add the LucyNote values to be sent in the email*/
+        [self presentViewController:mail animated:YES completion:NULL];
+        [mail setMessageBody:(self.currentNote.noteBody) isHTML:NO];/*sets the message body to the note body*/
+        [mail setSubject: (self.currentNote.noteTitle)]; /*sets the subject line to the note line*/
+        [mail addAttachmentData:UIImagePNGRepresentation(self.currentNote.noteImage) mimeType: @"image/png" fileName: self.currentNote.noteTitle];/*adds the note Image to the email as an attachment. */
+    }
+    else
+        NSLog(@"Can't send mail...the device will not support it.");
+}
+
+-(void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
+    if(result){
+        [self dismissViewControllerAnimated:YES completion:NULL];
+    }
+    else
+    {
+        switch (result)
+        {
+            case MFMailComposeResultCancelled: NSLog(@"Mail cancelled");
+                break;
+            case MFMailComposeResultSaved: NSLog(@"Mail saved");
+                break;
+            case MFMailComposeResultSent: NSLog(@"Mail sent");
+                break;
+            case MFMailComposeResultFailed: NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 -(IBAction)addPic:(id)sender{
@@ -75,10 +112,9 @@
     noteImagePick.allowsEditing = YES;
     noteImagePick.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:(noteImagePick) animated:YES completion:NULL];
-    
 }
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *chosenImage = info[UIImagePickerControllerEditedImage];
     [self.currentNote setNoteImage:chosenImage];
     self.noteImageView.image = chosenImage;

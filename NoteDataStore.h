@@ -15,7 +15,12 @@
 
 @property (strong, nonatomic) NSMutableArray *notesArray;
 
--(void)createNoteWithTitle: (NSString *)noteTitle withNoteBody: (NSString *)noteBody withNoteImage: (UIImage *)noteImage;
+-(void)createNoteWithTitle: (NSString *)noteTitle withNoteBody: (NSString *)noteBody withNoteImage:(UIImage *)noteImage;
+
+-(void)unarchiveNoteArray;
+
+-(void)saveNoteArray;
+
 
 
 

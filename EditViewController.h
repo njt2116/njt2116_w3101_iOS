@@ -12,9 +12,10 @@
 #import <MessageUI/MessageUI.h> 
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface EditViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
+@interface EditViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) Note *currentNote;
 @property (strong, nonatomic) NoteDataStore *dataStore;
+@property (nonatomic, readonly) CVTimeStamp *noteCreateTimeStamp;
 
 @end

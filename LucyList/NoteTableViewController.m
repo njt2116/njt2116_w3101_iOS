@@ -20,8 +20,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.dataStore = [NoteDataStore sharedNoteDataStore];
+    [self.dataStore unarchiveNoteArray];
+
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{

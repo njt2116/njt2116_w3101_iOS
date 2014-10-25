@@ -31,12 +31,8 @@
     return self;
 }
 
--(void)createNoteWithTitle:(NSString *)noteTitle withNoteBody:(NSString *)noteBody withNoteImage:(UIImage *)noteImage {
+-(void)createNoteWithTitle:(NSString *)noteTitle withNoteBody:(NSString *)noteBody withNoteImage:(UIImage *)noteImage{
     Note *newNote = [[Note alloc]initWithNoteTitle:noteTitle withNoteBody:noteBody withNoteImage:noteImage];
-    if(!newNote)
-    {
-        NSLog(@"What the eff is wrong with this?");
-    }
     [self.notesArray addObject:newNote];
 }
 
@@ -51,6 +47,12 @@
     NSString *uniquePath = @"LucyListNotes";
     NSString *fullPath = [docsPath stringByAppendingPathComponent:uniquePath];
     return fullPath;
+}
+
+-(void)unarchiveNoteArray{
+    NSString *fullPath = [self defaultPathVal];
+    NSData  *unarchivedData = [[NSData alloc]initWithContentsOfFile:fullPath];
+    //_notesArray = [NSKeyedUnarchiver unarchiveObjectWithData:unarchivedData];
 }
 
 
