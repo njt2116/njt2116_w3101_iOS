@@ -31,8 +31,8 @@
     return self;
 }
 
--(void)createNoteWithTitle:(NSString *)noteTitle withNoteBody:(NSString *)noteBody withNoteImage:(UIImage *)noteImage{
-    Note *newNote = [[Note alloc]initWithNoteTitle:noteTitle withNoteBody:noteBody withNoteImage:noteImage];
+-(void)createNoteWithTitle:(NSString *)noteTitle withNoteBody:(NSString *)noteBody withNoteImage:(UIImage *)noteImage withNoteCreateDate:(id)noteCreateDate{
+    Note *newNote = [[Note alloc]initWithNoteTitle:noteTitle withNoteBody:noteBody withNoteImage:noteImage withNoteCreateDate:noteCreateDate];
     [self.notesArray addObject:newNote];
 }
 
@@ -52,7 +52,7 @@
 -(void)unarchiveNoteArray{
     NSString *fullPath = [self defaultPathVal];
     NSData  *unarchivedData = [[NSData alloc]initWithContentsOfFile:fullPath];
-    //_notesArray = [NSKeyedUnarchiver unarchiveObjectWithData:unarchivedData];
+    _notesArray = [NSKeyedUnarchiver unarchiveObjectWithData:unarchivedData];
 }
 
 

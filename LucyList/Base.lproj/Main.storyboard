@@ -132,7 +132,9 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="createNoteTimeStamp" destination="8JP-Iy-yiR" id="CNN-3i-jKm"/>
                         <outlet property="noteBodyTextView" destination="2lY-bZ-biB" id="Xq6-LJ-ela"/>
+                        <outlet property="noteCreateTimeStamp" destination="8JP-Iy-yiR" id="lrm-Zw-yL8"/>
                         <outlet property="noteImageView" destination="hig-P7-sOn" id="625-PE-qcH"/>
                         <outlet property="noteTitleTextField" destination="Dme-pT-6GN" id="B2a-6u-EmI"/>
                     </connections>

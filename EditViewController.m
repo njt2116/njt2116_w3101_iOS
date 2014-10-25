@@ -18,6 +18,8 @@
 @property (strong, nonatomic) IBOutlet UITextView *noteBodyTextView;
 @property (strong, nonatomic) IBOutlet UITextField *noteTitleTextField;
 @property (strong, nonatomic) IBOutlet UIImageView *noteImageView;
+@property (strong, nonatomic) IBOutlet UILabel *createNoteTimeStamp;
+
 
 @end
 
@@ -32,6 +34,7 @@
     self.noteTitleTextField.text = [self.currentNote noteTitle];
     self.noteBodyTextView.text = [self.currentNote noteBody];
     self.noteImageView.image = [self.currentNote noteImage];
+    self.createNoteTimeStamp.text = [self.currentNote noteCreateDate];
 }
 
 
@@ -41,14 +44,20 @@
     NSString *currTitle = self.noteTitleTextField.text;
     NSString *currText = self.noteBodyTextView.text;
     UIImage *currImage = self.noteImageView.image;
+    NSString *currNoteCreateTime = self.createNoteTimeStamp.text;
     if(self.currentNote){
         self.currentNote.noteTitle = currTitle;
         self.currentNote.noteBody = currText;
         self.currentNote.noteImage = currImage;
+        self.currentNote.noteCreateDate= currNoteCreateTime;
     }
     else
     {
-        [self.dataStore createNoteWithTitle:currTitle withNoteBody:currText withNoteImage:currImage];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:162000];
+        NSString *formattedDateString = [dateFormatter stringFromDate:date];
+        [self.dataStore createNoteWithTitle:currTitle withNoteBody:currText withNoteImage:currImage withNoteCreateDate:formattedDateString];
     }
     [self.dataStore saveNoteArray];
     [self.navigationController popViewControllerAnimated:YES];
