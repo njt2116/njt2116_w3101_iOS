@@ -12,4 +12,12 @@ and allows for continous edits to all (except the timestamp related to initial c
 ISSUES:
 persisistence is not working properly:
 
-On initial run of the program, the unarchiving function (located in the view did
+On initial run of the program, the unarchiving function (the saveNotesArray 
+function call located in the view did load function in the 
+NoteTableViewController.m file) must be commented out.
+After saving at least 1 note, this can be uncommented, and the program will 
+run normally.  Because of this same issue, individual notes that are deleted
+in a program run will appear to be deleted, but when you re-run the program 
+they reappear.  
+
+ 
