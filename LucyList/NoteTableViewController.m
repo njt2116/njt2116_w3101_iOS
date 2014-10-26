@@ -24,22 +24,31 @@
     [self.dataStore unarchiveNoteArray];
 }
 
-- (void)application:(UIApplication *)application
-performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
 
--(void)viewWillAppear:(BOOL)animated{
+- (void) viewWillAppear{
+    
     [self.tableView reloadData];
+    //[self.tableView reloadInputViews];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
 
+
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return [self.dataStore.notesArray count];
 }
 
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.dataStore.notesArray removeObjectAtIndex:indexPath.row];
+    [self.tableView reloadData];
+    [self.tableView reloadInputViews];
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
