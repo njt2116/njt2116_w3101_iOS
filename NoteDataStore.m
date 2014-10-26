@@ -31,16 +31,24 @@
     return self;
 }
 
--(void)createNoteWithTitle:(NSString *)noteTitle withNoteBody:(NSString *)noteBody withNoteImage:(UIImage *)noteImage withNoteCreateDate:(id)noteCreateDate{
-    Note *newNote = [[Note alloc]initWithNoteTitle:noteTitle withNoteBody:noteBody withNoteImage:noteImage withNoteCreateDate:noteCreateDate];
+-(void)createNoteWithTitle:(NSString *)noteTitle
+              withNoteBody:(NSString *)noteBody
+             withNoteImage:(UIImage *)noteImage
+        withNoteCreateDate:(id)noteCreateDate{
+            Note *newNote = [[Note alloc]initWithNoteTitle:noteTitle
+                                              withNoteBody:noteBody
+                                             withNoteImage:noteImage
+                                        withNoteCreateDate:noteCreateDate];
     [self.notesArray addObject:newNote];
 }
+
 
 -(void)saveNoteArray{
     NSData *savedNotesArray = [NSKeyedArchiver archivedDataWithRootObject:_notesArray];
     NSString *fullPath = [self defaultPathVal];
     [savedNotesArray writeToFile:fullPath atomically:YES];
 }
+
 
 -(NSString *)defaultPathVal {
     NSString *docsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];

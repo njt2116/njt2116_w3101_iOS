@@ -19,9 +19,19 @@
 @implementation NoteTableViewController
 
 - (void)viewDidLoad {
+    BOOL isRunMoreThanOnce = [[NSUserDefaults standardUserDefaults] boolForKey:@"isRunMoreThanOnce"];
+    if(!isRunMoreThanOnce){
+        // Show the alert view
+        // Then set the first run flag
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isRunMoreThanOnce"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
     [super viewDidLoad];
     self.dataStore = [NoteDataStore sharedNoteDataStore];
-    [self.dataStore unarchiveNoteArray];
+    if(isRunMoreThanOnce)
+    {
+        [self.dataStore unarchiveNoteArray];
+    }
 }
 
 
@@ -81,7 +91,6 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)
             segue sender:(id)sender {
-    
     
     EditViewController *cellSelectionSegueDestination = segue.destinationViewController;
     NSIndexPath *cellSelectionPathIndex = [self.tableView indexPathForSelectedRow];
