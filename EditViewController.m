@@ -45,7 +45,6 @@
 
 
 -(IBAction)saveNoteToDataStoreWithInfoFromViewController:(id)sender{
-    
     NSString *currTitle = self.noteTitleTextField.text;
     NSString *currText = self.noteBodyTextView.text;
     UIImage *currImage = self.noteImageView.image;
@@ -56,7 +55,10 @@
     }
     else
     {
-        [self.dataStore createNoteWithTitle:currTitle withNoteBody:currText withNoteImage:currImage withNoteCreateDate:_timeStampString];
+        [self.dataStore createNoteWithTitle:currTitle
+                               withNoteBody:currText
+                                withNoteImage:currImage
+                                withNoteCreateDate:_timeStampString];
     }
     [self.dataStore saveNoteArray];
     [self.navigationController popViewControllerAnimated:YES];

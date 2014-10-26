@@ -21,10 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.dataStore = [NoteDataStore sharedNoteDataStore];
-    //[self.dataStore unarchiveNoteArray];
-
-    
+    [self.dataStore unarchiveNoteArray];
 }
+
+- (void)application:(UIApplication *)application
+performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
 
 -(void)viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
@@ -69,7 +70,8 @@
     return 1;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+-(void)prepareForSegue:(UIStoryboardSegue *)
+            segue sender:(id)sender {
     
     
     EditViewController *cellSelectionSegueDestination = segue.destinationViewController;
@@ -77,7 +79,7 @@
     
     NSDate *currentTime = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"mm-dd-yyyy hh:mm a"];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy hh:mma"];
     NSString *resultString = [dateFormatter stringFromDate: currentTime];
     NSLog(@"@%", resultString);
     if([segue.identifier isEqualToString:@"addNote"])
